@@ -9,9 +9,10 @@
 </head>
 <body>
     <button id="sendButton" onclick="getPrime()">Get Prime</button>
+    <button id="go-line-pay">Go to Line Pay</button>
 </body>
 <script>
-    TPDirect.setupSDK(,,'sandbox')
+    TPDirect.setupSDK(11288,'app_S2AwaICHyFtE3tmnWrhhOspzlJOeaQSo1UVfHBBQFMWtUrNgbJtmcPbKZMi3','sandbox')
 
     function getPrime() {
         TPDirect.linepay.getPrime(function(result) {
@@ -25,7 +26,7 @@
                 type: "POST",
                 dateType: "json",
                 success: function(result) {
-                    $('button#go-lin-pay').click(function() {
+                    $('button#go-line-pay').click(function() {
                         TPDirect.linepay.pay(result.payment_url)
                     })
                 }
