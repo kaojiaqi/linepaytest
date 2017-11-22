@@ -45,7 +45,8 @@ app.post('/create_order', (req, res, next) => {
             })
         }
         // 正確的話，回傳 payment url 給客戶去進行付款
-        res.json(console.log('success'),{
+        
+        res.json({
             payment_url: result.data.payment_url,
             status: result.data.status,
             msg: result.data.msg
