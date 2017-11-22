@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Pay Result</title>
+</head>
+<body>
+    <h2>Line Pay Success</h2>
+    <h3 type="text" value="Transaction ID :" id="transaction_id"></h3>
+    <h3 type="text" value="Order ID : " id="order_id"></h3>
+    <h3 type="text" value="Status :" id="status"></h3>
+    <h3 type="text" value="Bank Transaction ID :" id="bank_transaction_id"></h3>
+</body>
+<script>
+    var url = window.location.href
+    url = new URL(url)
+
+    var result_transaction_id = url.searchParams.get("rec_trade_id");
+    var result_order_id = url.searchParams.get("order_number");
+    var result_status = url.searchParams.get("status");
+    var result_bank_transaction_id = url.searchParams.get("bank_transaction_id");
+
+
+    document.getElementById("order_id").innerHTML = "order_number : " + result_order_id
+    document.getElementById("transaction_id").innerHTML = "rec_trade_id : " + result_transaction_id
+    document.getElementById("status").innerHTML = "status : " + result_status
+    document.getElementById("bank_transaction_id").innerHTML = "bank_transaction_id : " + result_bank_transaction_id
+
+</script>
+</html>

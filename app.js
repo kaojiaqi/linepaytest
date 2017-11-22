@@ -14,7 +14,7 @@ app.use('/',express.static(__dirname + "/public/views"))
 
 app.post('/create_order', (req, res, next) => {
     console.log(req.body)
-    axios.post(`https://dev-prod.tappayapis.com/tpc/payment/pay-by-prime`, {
+    axios.post(`https://dev-prod.tappaysdk.com/tpc/payment/pay-by-prime`, {
         prime: req.body.prime,
         partner_key: "72DMgo9RQN2BSW4SmaHWYVOUCEIUDMg9i1JnXKic",
         fraud_id: req.body.fraud_id,
@@ -32,8 +32,8 @@ app.post('/create_order', (req, res, next) => {
             "national_id": "A123456789"
         },
         result_url: {
-            frontend_redirect_url: `https://linepaytest.herokuapp.com/confirm_order`,
-            backend_notify_url: `https://linepaytest.herokuapp.com/backend_notify_url`,
+            frontend_redirect_url: `https://c67cb61d.ngrok.io/confirm_order`,
+            backend_notify_url: `https://c67cb61d.ngrok.io/backend_notify_url`,
         }
     }).then((result) => {
         // 錯誤的話，回傳錯誤訊息
@@ -60,6 +60,12 @@ app.post('/create_order', (req, res, next) => {
     })
 })
 
+app.get('/confirm_order', (req, res, next) => {
+    const rec_trade_id = req.query.rec_trade_id
+    const status = req.query.status
+    // You can use /tpc/transaction/query to double check the transaction is finished
+    res.redirect(`/result.html?rec_trade_id=${req.query.rec_trade_id}&order_number=${req.query.order_number}&status=${req.query.status}&bank_transaction_id=${req.query.bank_transaction_id}`)
+})
 
 app.post('backend_notify_url',(req,res) => {
     console.log(req.body)
