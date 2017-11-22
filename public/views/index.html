@@ -28,7 +28,7 @@
                 dateType: "json",
                 success: function(result) {
                     $('button#go-line-pay').click(function() {
-                        TPDirect.linepay.pay(result.payment_url)
+                        TPDirect.linePay.pay(result.payment_url)
                     })
                 }
             })
