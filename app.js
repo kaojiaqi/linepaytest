@@ -13,11 +13,12 @@ app.get('/test',(req,res) => {
 })
 
 app.post('/create_order', (req, res, next) => {
+    console.log(req.body)
     axios.post(`https://sandbox.tappayapis.com/tpc/payment/pay-by-prime`, {
         prime: req.body.prime,
-        partner_key: PARTNER_KEY,
+        partner_key: "72DMgo9RQN2BSW4SmaHWYVOUCEIUDMg9i1JnXKic",
         fraud_id: req.body.fraud_id,
-        merchant_id: MERCHANT_ID, 
+        merchant_id: "CTBC.TEST", 
         amount: 1,
         details: "Some details about item",
         currency: "TWD",
