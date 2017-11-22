@@ -6,6 +6,10 @@ const axios = require('axios')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
+axios.defaults.headers.post['Content-Type'] = "application/json"
+axios.defaults.headers.post['x-api-key'] = "72DMgo9RQN2BSW4SmaHWYVOUCEIUDMg9i1JnXKic"
+
+
 app.use('/',express.static(__dirname + "/public/views"))
 
 app.get('/test',(req,res) => {
