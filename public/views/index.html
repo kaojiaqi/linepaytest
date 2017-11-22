@@ -26,7 +26,7 @@
                 type: "POST",
                 dateType: "json",
                 success: function(result) {
-                    console.log(result)
+                    console.log("success : ",result)
                     $('button#go-line-pay').click(function() {
                         console.log("payment_url : " , result.payment_url)
                         TPDirect.linePay.pay(result.payment_url)
