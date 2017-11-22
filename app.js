@@ -14,7 +14,7 @@ app.use('/',express.static(__dirname + "/public/views"))
 
 app.post('/create_order', (req, res, next) => {
     console.log(req.body)
-    axios.post(`https://prod.tappayapis.com/tpc/payment/pay-by-prime`, {
+    axios.post(`https://dev-prod.tappayapis.com/tpc/payment/pay-by-prime`, {
         prime: req.body.prime,
         partner_key: "72DMgo9RQN2BSW4SmaHWYVOUCEIUDMg9i1JnXKic",
         fraud_id: req.body.fraud_id,
