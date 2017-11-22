@@ -18,7 +18,7 @@
     function getPrime() {
         TPDirect.linePay.getPrime(function(result) {
             console.log("result : " , result)
-
+            console.log("payment_url : " , result.payment_url)
             $.ajax({
                 url: '/create_order',
                 data: {
@@ -30,6 +30,10 @@
                     $('button#go-line-pay').click(function() {
                         TPDirect.linePay.pay(result.payment_url)
                     })
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
                 }
             })
 
