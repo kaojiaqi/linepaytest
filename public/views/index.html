@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://dev-js.tappaysdk.com/tpdirect/v2_3_3"></script>
+    <title>Line Pay Test</title>
+</head>
+<body>
+    <button id="sendButton" onclick="getPrime()">Get Prime</button>
+</body>
+<script>
+    TPDirect.setupSDK(,,'sandbox')
+
+    function getPrime() {
+        TPDirect.linepay.getPrime(function(result) {
+            console.log("result : " , result)
+
+            $.ajax({
+                url: '/create_order',
+                data: {
+                    "prime" : result.prime
+                },
+                type: "POST",
+                dateType: "json",
+                success: function(result) {
+                    $('button#go-lin-pay').click(function() {
+                        TPDirect.linepay.pay(result.payment_url)
+                    })
+                }
+            })
+
+        })
+
+
+    }
+</script>
+</html>
